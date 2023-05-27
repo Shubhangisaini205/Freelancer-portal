@@ -15,22 +15,22 @@
 
     </nav>
     <h1 id="heading">LIST OF ALL FREELANCERS</h1>
-<div id="formcontainer">
-    <h2>Edit the details here</h2>
-    <form id="form">
-        <input type="text" placeholder="id of the freelencer" id="idInput">
-        <input type="text" name="skills" id="skillInput" placeholder="Enter your skills">
-        <input type="number" name="rate" id="RateInput" placeholder="Enter your per hour Rate">
-        <select name="profession" id="ProfessionInput">
-            <option value="">Choose Profession</option>
-            <option value="Student">Student</option>
-            <option value="Web Developer">Web Developer</option>
-            <option value="Graphic Designer">Graphic Designer </option>
-        </select>
+    <div id="formcontainer">
+        <h2>Edit the details here</h2>
+        <form id="form">
+            <input type="text" placeholder="id of the freelencer" id="idInput">
+            <input type="text" name="skills" id="skillInput" placeholder="Enter your skills">
+            <input type="number" name="rate" id="RateInput" placeholder="Enter your per hour Rate">
+            <select name="profession" id="ProfessionInput">
+                <option value="">Choose Profession</option>
+                <option value="Student">Student</option>
+                <option value="Web Developer">Web Developer</option>
+                <option value="Graphic Designer">Graphic Designer </option>
+            </select>
 
-        <button id="editButton">Edit</button>
-    </form>
-</div>
+            <button id="editButton">Edit</button>
+        </form>
+    </div>
     <div id="filters">
         <div>
             <select name="sort" id="sortbyrate">
@@ -55,6 +55,12 @@
     <main id="container">
 
     </main>
+
+    <div id="pagination">
+        <button id="prev">≪PREV</button>
+        <button id="page-button">1</button>
+        <button id="next">NEXT≫</button>
+    </div>
 
 </body>
 <script src="/Script/freelancer.js"></script>

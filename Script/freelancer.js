@@ -10,6 +10,12 @@ let editbtnSubmit = document.getElementById("editButton")
 let Professionfilter = document.getElementById("Professionfilter")
 let sortbyrate = document.getElementById("sortbyrate")
 let search = document.getElementById("search")
+
+//pagination;
+
+let prev = document.getElementById("prev")
+let next = document.getElementById("next")
+let pagebutton = document.getElementById("page-button")
 let freelancerData = []
 
 window.addEventListener("load", () => {
@@ -18,7 +24,7 @@ window.addEventListener("load", () => {
 
 
 function FetchFreelancer() {
-    fetch(" http://localhost:8080/freelancers")
+    fetch(" https://freelancer-portal-api.onrender.com/freelancers")
         .then((res) => res.json())
         .then((res) => {
             console.log(res)
@@ -33,53 +39,53 @@ function FetchFreelancer() {
 sortbyrate.addEventListener("change", () => {
     if (sortbyrate.value != "") {
         if (sortbyrate.value == "htol") {
-            fetch(" http://localhost:8080/freelancers?_sort=hourly_rate&_order=desc")
+            fetch(" https://freelancer-portal-api.onrender.com/freelancers?_sort=hourly_rate&_order=desc")
                 .then((res) => res.json())
                 .then((res) => {
                     RenderFreelancers(res)
                 })
         } else {
-            fetch(" http://localhost:8080/freelancers?_sort=hourly_rate&_order=asc")
+            fetch(" https://freelancer-portal-api.onrender.com/freelancers?_sort=hourly_rate&_order=asc")
                 .then((res) => res.json())
                 .then((res) => {
                     RenderFreelancers(res)
                 })
         }
-    }else{
+    } else {
         RenderFreelancers(freelancerData)
     }
 })
 
 //filters
 
-Professionfilter.addEventListener("change",()=>{
-    if(Professionfilter.value!=""){
-       let filtered =  freelancerData.filter((item,i)=>{
+Professionfilter.addEventListener("change", () => {
+    if (Professionfilter.value != "") {
+        let filtered = freelancerData.filter((item, i) => {
             return item.profession === Professionfilter.value
         })
         RenderFreelancers(filtered)
-    }else{
+    } else {
         RenderFreelancers(freelancerData)
     }
 })
 
 
 //searching
-search.addEventListener("change",()=>{
-    fetch(`http://localhost:8080/freelancers?q=${search.value}`)
-    .then((res) => res.json())
-    .then((res) => {
-        // console.log(res)
-        RenderFreelancers(res)
-        
-    })
+search.addEventListener("change", () => {
+    fetch(`https://freelancer-portal-api.onrender.com/freelancers?q=${search.value}`)
+        .then((res) => res.json())
+        .then((res) => {
+            // console.log(res)
+            RenderFreelancers(res)
+
+        })
 })
 
 
 // populating Edit 
 
 function EditFreelancerPopulating(id) {
-    fetch(`http://localhost:8080/freelancers/${id}`)
+    fetch(`https://freelancer-portal-api.onrender.com/freelancers/${id}`)
         .then((res) => res.json())
         .then((res) => {
             console.log(res)
@@ -99,7 +105,7 @@ editbtnSubmit.addEventListener("click", (e) => {
         hourly_rate: RateInput.value,
         profession: ProfessionInput.value
     }
-    fetch(`http://localhost:8080/freelancers/${data.id}`, {
+    fetch(`https://freelancer-portal-api.onrender.com/freelancers/${data.id}`, {
         method: "PATCH",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(data)
@@ -108,18 +114,20 @@ editbtnSubmit.addEventListener("click", (e) => {
         .then((res) => {
             console.log(res);
             alert("Freelancer Edited Successfully")
+            FetchFreelancer()
         }).catch((err) => console.log(err))
 })
 
 
 //Delete Request 
 function DeleteFreelancer(id) {
-    fetch(`http://localhost:8080/freelancers/${id}`, {
+    fetch(`https://freelancer-portal-api.onrender.com/freelancers/${id}`, {
         method: "DELETE",
     })
         .then((res) => res.json())
         .then((res) => {
             alert("Freelancer Deleted Successfully")
+            FetchFreelancer()
         }).catch((err) => console.log(err))
 
 }
@@ -128,15 +136,16 @@ function DeleteFreelancer(id) {
 
 
 function HireRequest(id) {
-    fetch(`http://localhost:8080/freelancers/${id}`, {
+    fetch(`https://freelancer-portal-api.onrender.com/freelancers/${id}`, {
         method: "PATCH",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ isBooked: false })
+        body: JSON.stringify({ isBooked: true })
     })
         .then((res) => res.json())
         .then((res) => {
             console.log(res);
             alert("Freelancer Hired!!")
+            FetchFreelancer()
         }).catch((err) => console.log(err))
 }
 
@@ -211,7 +220,7 @@ function GetCard(id, name, profile_picture, email, profession, skills, hourly_ra
      
  </div>
  <div class="button2">
-     <button "disabled" data-id=${id} class="card-Hire">HIRE ME</button>
+     <button ${isBooked==true?"disable":""}  data-id=${id} class="card-Hire">HIRE ME</button>
  </div>
 </div>
 `

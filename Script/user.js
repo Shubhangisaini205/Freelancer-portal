@@ -22,7 +22,7 @@ form.addEventListener("submit", (e) => {
 // Registeration
 
 function RegisterUser(data) {
-    fetch("http://localhost:8080/freelancers", {
+    fetch("https://freelancer-portal-api.onrender.com/freelancers", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(data)
