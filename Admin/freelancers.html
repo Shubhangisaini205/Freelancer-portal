@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/Style/freelancer.css">
+</head>
+
+<body>
+    <nav>
+        <a href="admin.html">Admin</a>
+
+    </nav>
+    <h1 id="heading">LIST OF ALL FREELANCERS</h1>
+<div id="formcontainer">
+    <h2>Edit the details here</h2>
+    <form id="form">
+        <input type="text" placeholder="id of the freelencer" id="idInput">
+        <input type="text" name="skills" id="skillInput" placeholder="Enter your skills">
+        <input type="number" name="rate" id="RateInput" placeholder="Enter your per hour Rate">
+        <select name="profession" id="ProfessionInput">
+            <option value="">Choose Profession</option>
+            <option value="Student">Student</option>
+            <option value="Web Developer">Web Developer</option>
+            <option value="Graphic Designer">Graphic Designer </option>
+        </select>
+
+        <button id="editButton">Edit</button>
+    </form>
+</div>
+    <div id="filters">
+        <div>
+            <select name="sort" id="sortbyrate">
+                <option value="">sort By Rate</option>
+                <option value="htol">High to Low</option>
+                <option value="ltoh">Low to High</option>
+            </select>
+        </div>
+        <div>
+            <select name="profession" id="Professionfilter">
+                <option value="">Choose Profession</option>
+                <option value="Student">Student</option>
+                <option value="Web Developer">Web Developer</option>
+                <option value="Graphic Designer">Graphic Designer </option>
+            </select>
+        </div>
+        <div>
+            <input type="search" id="search" placeholder="Search freelancer by name">
+        </div>
+
+    </div>
+    <main id="container">
+
+    </main>
+
+</body>
+<script src="/Script/freelancer.js"></script>
+
+</html>
