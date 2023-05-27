@@ -220,7 +220,7 @@ function GetCard(id, name, profile_picture, email, profession, skills, hourly_ra
      
  </div>
  <div class="button2">
-     <button ${isBooked==true?"disable":""}  data-id=${id} class="card-Hire">HIRE ME</button>
+     <button ${isBooked==true?"disabled":""}  data-id=${id} class="card-Hire">HIRE ME</button>
  </div>
 </div>
 `
